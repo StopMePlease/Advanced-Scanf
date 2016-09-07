@@ -1,0 +1,71 @@
+﻿int scanf(const char*dk[,danh sach cac doi]);
+Trong đó, dk là biến con trỏ kiểu char chứa địa chỉ của chuỗi điều khiển
+
+1/ Danh sách các đối
+	Mỗi đối trong danh sách là một con trỏ chứa địa chỉ của một vùng nhớ ( địa chỉ biến, mảng)
+		dùng để lưu trữ một giá trị đọc vào từ bàn phím.
+		Các đối cần phân cách nhau bởi dấu phẩy.
+	Mỗi biến đều có một địa chỉ riêng của nó trong bộ nhớ, để lấy được địa chỉ này
+		các bạn chỉ cần thêm kí tự & vào trước tên biến
+2/ Chuỗi điều khiển
+	Gồm các kí tự đạc tả chuyển dạng. Mỗi kí tự đặc tả thường có một đối tương ứng.
+3/ Đặc tả có thể viết một cách tổng quát như sau:
+							&[*][d.d] ký tự chuyển dạng
+
+	a) Việc có mặt của dấu * nói lên rằng trường vào vẫn được dò đọc bình thường,
+		nhưng giá trị của nó bị bỏ qua (không được lưu vào bộ nhớ ).
+		Như vậy, đặc tả chứa dấu * sẽ không có đối tương ứng.
+	b) dd là một dãy số xác định chiều dài cực đại của trường vào.
+
+[dãy kí tự] Các kí tự trên dòng vào sẽ lần lượt được đọc cho đến khi nào 
+		gặp một kí tự không thuộc tập các kí tự đặt trong hai dấu [].
+		Đối tương ứng phải là con trỏ kiểu char trỏ tới một vùng nhớ đủ lớn,
+		trường vào là dãy kí tự bất kì (khoảng trắng được xét như kí tự khác)
+
+[^dãy kí tự] Các kí tự trên dòng vào sẽ lần lượt đựơc đọc cho đến khi nào
+		gặp một kí tự thuộc tập các kí tự đặt trong hai dấu [^].
+		Đối tương ứng phải là con trỏ kiểu char trỏ tới một vùng nhớ đủ lớn,
+		trường vào là dãy kí tự bất kì ( khoảng trắng được xét tới như ký tự khác)
+
+==============================================================
+Reading some predefined characters
+----
+You can read a string of some predefined characters with scanf. Suppose you want to read a string with only characters B, A, N, G, L, A, D, E, S, H.
+Do this:
+
+    scanf("%[BANGLADESH]", s);
+
+scanf will stop reading when ever something other than the characters within the square brackets will be read.
+If the input is "ABDXBSDFS", the scanf will read "ABD".
+
+The %[...] format specifier is called scanset.
+==============================================================
+Reading a line containing whitespaces
+----
+The '^' symbols means NOT inside the square brackets after %. Do this to read a line containing whitespace.
+
+    scanf("%[^\n]", s);
+
+scanf will return only when it reads a newline character.
+==============================================================
+Skipping some characters when reading
+----
+Read the hour, skipp the colon, read the minute.
+You can do the whole thing with a single scanf
+
+    scanf("%d:%d", &h, &m);
+
+The first integer will be read, then if found, a colon will be skipped, then another integer will be read.
+You can skip an unknown data with a %* specifier.
+
+    scanf("%d%*c%d", &h, &m);
+
+This will read two integer and skip a character between them.
+==============================================================
+A floting point number in a line, then a character in another line.
+----
+scanf("%lf\n%c", &d, &ch);
+scanf("%[^\n]\n", s);
+
+
+
